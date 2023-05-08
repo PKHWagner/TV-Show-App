@@ -23,6 +23,17 @@ module.exports = {
   },
   
   // Update
+  updateShow: (req, res) => {
+    Show.findByIdAndUpdate(req.params.id, req.body, {new: true, runValidators: true})
+        .then(updatedShow => res.json(updatedShow))
+        .catch(err => res.json(err));
+  },
 
   // Delete
+  deleteShow: (req, res) => {
+    Show.findByIdAndDelete(req.params.id)
+        .then(result => res.json(result))
+        .catch(err => res.json(err));
+  }
+
 }
